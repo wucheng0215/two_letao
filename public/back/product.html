@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <link rel="stylesheet" href="lib/bootstrap/css/bootstrap.css">
+  <link rel="stylesheet" href="lib/nprogress/nprogress.css">
+  <link rel="stylesheet" href="css/common.css">
+</head>
+
+<body>
+
+  <!-- 侧边栏 -->
+  <div class="lt_aside">
+    <!-- 头部 -->
+    <div class="aside_header">
+      <a href="javascript:;">黑马15期</a>
+    </div>
+    <!-- 用户头像 -->
+    <div class="aside_user">
+      <img src="images/default.jpg" alt="">
+      <p>超级管理员</p>
+    </div>
+    <!-- 导航区域 -->
+    <div class="nav">
+      <ul>
+        <li>
+          <a href="javascript:;">
+              <a href="javascript:;">
+            <span class="glyphicon glyphicon-user"></span>
+            <span>用户管理</span>
+          </a>
+
+        </li>
+        <li>
+          <a href="javascript:;" class="classify">
+            <span class="glyphicon glyphicon-list"></span>
+            <span>分类管理</span>
+          </a>
+          <div class="child">
+            <a href="javascript:;">一级分类</a>
+            <a href="javascript:;">二级分类</a>
+          </div>
+        </li>
+        <li>
+          <a href="javascript:;" class="now">
+            <span class="glyphicon glyphicon-tags"></span>
+            <span>商品管理</span>
+          </a>
+        </li>
+      </ul>
+    </div>
+
+  </div>
+
+
+  <!-- 主要区域 -->
+  <div class="lt_main">
+    <!-- 1、头部区域 -->
+    <div class="main_header">
+      <a href="javascript:;" class="pull-left header_left">
+        <span class="glyphicon glyphicon-align-justify"></span>
+      </a>
+      <a href="javascript:;" class="pull-right">
+        <span class="glyphicon glyphicon-log-out log-out"></span>
+      </a>
+    </div>
+
+    <!-- 2、内容区域 -->
+    <div class="main_content">
+
+      <div class="container-fluid">
+        <!-- 2.1面包屑路径导航 -->
+        <ol class="breadcrumb">
+          <li>
+            <a href="#">管理系统</a>
+          </li>
+          <li class="active">商品管理</li>
+        </ol>
+        <!-- 2.2content -->
+        <div>111</div>
+      </div>
+
+    </div>
+
+  </div>
+
+
+  <!-- 退出登录框 -->
+  <!-- 默认是隐藏的 -->
+  <div class="modal fade" tabindex="-1" id="logoutModal">
+      <div class="modal-dialog modal-sm"> <!--模态框变小-->
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal"><span>&times;</span></button>
+            <h4 class="modal-title">温馨提示</h4>
+          </div>
+          <div class="modal-body">
+            <p class="text-danger">
+              <span class="glyphicon glyphicon-info-sign"></span>
+              您确定要退出后台管理系统吗？
+            </p>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+            <button type="button" class="btn btn-primary btn_logout">退出</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+
+  <script src="lib/jquery/jquery.js"></script>
+  <script src="lib/bootstrap/js/bootstrap.js"></script>
+  <script src="lib/nprogress/nprogress.js"></script>
+  <script src="js/common.js"></script>
+
+</body>
+
+</html>
