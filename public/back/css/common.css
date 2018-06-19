@@ -27,6 +27,13 @@ a:active{
   text-decoration: none;
 }
 
+.table.table-bordered th,.table.table-bordered td{
+  text-align: center;
+  vertical-align: middle；
+
+}
+
+
 /* 设置首页样式 */
 .lt_aside{
   width: 180px;
@@ -121,3 +128,14 @@ a:active{
 .lt_main.now{
   padding-left: 0;
 }
+
+/* 用户管理 */
+.table.table-bordered th,.table.table-bordered td{
+  text-align: center;
+  vertical-align: middle；
+
+}
+
+
+
+
