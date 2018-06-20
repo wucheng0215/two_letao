@@ -30,7 +30,7 @@ a:active{
   text-decoration: none;
 }
 
-.table.table-bordered th,.table.table-bordered td{
+.table.table-bordered tr td,.table.table-bordered th td{
   text-align: center;
   vertical-align: middle；
 

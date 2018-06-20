@@ -7,7 +7,10 @@
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>Document</title>
   <link rel="stylesheet" href="lib/bootstrap/css/bootstrap.css">
+  <!-- 进度条 -->
   <link rel="stylesheet" href="lib/nprogress/nprogress.css">
+<!-- 表单校验 -->
+<link rel="stylesheet" href="lib/bootstrap-validator/css/bootstrapValidator.css">
   <link rel="stylesheet" href="css/common.css">
 </head>
 
@@ -29,10 +32,10 @@
       <ul>
         <li>
           <a href="javascript:;">
-              <a href="javascript:;">
-            <span class="glyphicon glyphicon-user"></span>
-            <span>用户管理</span>
-          </a>
+            <a href="javascript:;">
+              <span class="glyphicon glyphicon-user"></span>
+              <span>用户管理</span>
+            </a>
 
         </li>
         <li>
@@ -79,12 +82,26 @@
             <a href="#">管理系统</a>
           </li>
           <li>
-              <a href="#">分类管理</a>
-            </li>
+            <a href="#">分类管理</a>
+          </li>
           <li class="active">二级管理</li>
         </ol>
         <!-- 2.2content -->
-        <div>111</div>
+        <button class="btn btn-default mb_20 btn_add2">添加分类</button>
+        <table class="table table-bordered table-striped">
+          <thead>
+            <th>序号</th>
+            <th>一级分类名称</th>
+            <th>二级分类名称</th>
+            <th>二级分类LOGO</th>
+          </thead>
+          <tbody>
+            <!-- 需要添加的内容 -->
+          </tbody>
+        </table>
+        <div class="text-right">
+          <ul id="pagintor"></ul>
+        </div>
       </div>
 
     </div>
@@ -92,35 +109,124 @@
   </div>
 
 
-  <!-- 退出登录框 -->
+  <!-- 添加登录框 -->
   <!-- 默认是隐藏的 -->
-  <div class="modal fade" tabindex="-1" id="logoutModal">
-      <div class="modal-dialog modal-sm"> <!--模态框变小-->
-        <div class="modal-content">
-          <div class="modal-header">
-            <button type="button" class="close" data-dismiss="modal"><span>&times;</span></button>
-            <h4 class="modal-title">温馨提示</h4>
-          </div>
-          <div class="modal-body">
-            <p class="text-danger">
-              <span class="glyphicon glyphicon-info-sign"></span>
-              您确定要退出后台管理系统吗？
-            </p>
-          </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
-            <button type="button" class="btn btn-primary btn_logout">退出</button>
-          </div>
+  <div class="modal fade" tabindex="-1" id="secondModal">
+    <div class="modal-dialog modal-sm">
+      <!--模态框变小-->
+      <div class="modal-content">
+
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">
+            <span>&times;</span>
+          </button>
+          <h4 class="modal-title">添加分类</h4>
         </div>
+        <form id="form">
+          <div class="modal-body">
+            <!-- 一定要是表单，因为要校验 -->
+
+            <div class="form-group">
+              <input type="hidden" name="categoryId">
+              <input type="hidden" name="hot" value="1">
+              <div class="dropdown">
+                <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown">
+                  <span class="dropdown-text">请选择一级分类</span>
+                  <span class="caret"></span>
+                </button>
+                <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
+                  <!-- 挖个坑，需要填写内容 -->
+                </ul>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <input type="text" class="form-control" name="brandName" autocomplete="off" placeholder="请输入二级分类的名称">
+            </div>
+
+            <div class="form-group">
+              <!-- 这边要注意的是for="fileupload" id="fileupload" 关联点label会关联到对应的input框  -->
+              <label class="btn btn-default" for="fileupload">上传图片</label>
+              <!-- 指定图片的name属性， -->
+              <!-- data-url 指定图片上传时的接口地址，看pc文档 -->
+              <input type="file" class="hidden" id="fileupload" name="pic1" data-url="/category/addSecondCategoryPic" >
+            </div>
+
+            <div class="form-group">
+              <div class="img-box">
+                  <img src="images/none.png" width="100" alt="">
+                  <!-- 这边要注意文本框必须要用hidden，才真正的是一个隐藏框 -->
+                  <input type="hidden" name = "brandLogo">
+              </div>
+              
+            </div>
+          </div>
+        </form>
+
+        <div class="modal-footer">
+          <!--
+          html5新增了几个属性：
+           placeholder：占位信息
+           autofocus:自动获取焦点
+           autoComplete:自动补全 默认是on,  off
+           multiple:多选  select  input:file
+           form="form" :form表单的id，允许你的input写到form的外面，可以通过form这个属性关联到表单，相当于写在form的里面。
+       -->
+          <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+          <button type="submit" form="form" class="btn btn-primary btn-confirm">添加</button>
+
+        </div>
+        
       </div>
     </div>
+  </div>
+
+
+
+
+  <!-- 准备模板 -->
+  <script type="text/html" id="tpl">
+    {{each rows v i}}
+    <tr>
+      <td>{{i+1}}</td>
+      <td>{{v.categoryName}}</td>
+      <td>{{v.brandName}}</td>
+      <td>
+        <img src="{{v.brandLogo}}" alt="" width="50">
+      </td>
+    </tr>
+    {{/each}}
+  </script>
+
+
+  <!-- 准备模板，将一级分类里面的内容添加到ul里面, -->
+  <script type="text/html" id="tpl2">
+    {{each rows v i}}
+    <li>
+      <!-- 给a添加一个id，给a注册点击按钮，需要拿到对应的内容 -->
+        <a href="#" data-id={{v.id}}>{{v.categoryName}}</a>
+      </li>
+      {{/each}}
+  </script>
 
 
 
   <script src="lib/jquery/jquery.js"></script>
   <script src="lib/bootstrap/js/bootstrap.js"></script>
+  <!-- 进度条加载 -->
   <script src="lib/nprogress/nprogress.js"></script>
+  <!-- 引擎模板 -->
+  <script src="lib/artTemplate/template-web.js"></script>
+  <script src="lib/bootstrap-paginator/bootstrap-paginator.js"></script>
+  <!-- 文件的上传 -->
+  <script src="lib/jquery-fileupload/jquery.ui.widget.js"></script>
+  <script src="lib/jquery-fileupload/jquery.fileupload.js"></script>
+
+  <!-- 表单校验基于bootstrap -->
+  <script src="lib/bootstrap-validator/js/bootstrapValidator.js"></script>
+
   <script src="js/common.js"></script>
+  <script src="js/second.js"></script>
 
 </body>
 

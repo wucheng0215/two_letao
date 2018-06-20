@@ -6,7 +6,7 @@ $(function () {
   //1、发送ajax获取数据,查询功能
 
   var pageNum = 1;
-  var pageSize = 2;
+  var pageSize = 5;
 
   function render() {
     $.ajax({
