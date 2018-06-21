@@ -5,6 +5,7 @@ $(function () {
 
   var page = 1;
   var pageSize = 5;
+  var img = [];
   function render() {
 
     $.ajax({
@@ -105,10 +106,11 @@ $(function () {
     $(".dropdown-text").text(txt);
     //查看pc端口，二级分类登录时需要的参数
     $('[name="brandId"]').val(id);
-  //手动的添加    
+    //手动的添加    
     //如果选中，就让它手动的通过，VALID不需要第三个参数
     $("#form").data("bootstrapValidator").updateStatus("brandId", "VALID");
   });
+
 
   //初始化表单的校验
   $("#form").bootstrapValidator({
@@ -146,7 +148,7 @@ $(function () {
           notEmpty: {
             message: '请输入商品的描述'
           },
-          
+
 
         }
       },
@@ -174,8 +176,8 @@ $(function () {
           }
         }
       },
-      
-      oldPrice:{
+
+      oldPrice: {
         validators: {
           //不能为空
           notEmpty: {
@@ -184,7 +186,7 @@ $(function () {
         }
       },
 
-      Price:{
+      Price: {
         validators: {
           //不能为空
           notEmpty: {
@@ -192,7 +194,7 @@ $(function () {
           }
         }
       },
-      brandLogo:{
+      brandLogo: {
         validators: {
           //不能为空
           notEmpty: {
@@ -211,11 +213,75 @@ $(function () {
     //e：事件对象
     //data：图片上传后的对象，通过e.result.picAddr可以获取上传后的图片地址
     done: function (e, data) {
-      
+      console.log(data.result);
+
+      //如果图片超过三张，就直接不能上传了
+      if (img.length >= 3) {
+        return;
+      }
+
+
+
+      $(".img-box").append('<img src="' + data.result.picAddr + '" width="100" height="100" alt="">')
+      img.push(data.result);
+      if (img.length === 3) {
+        //手动的校验成功
+        $("#form").data("bootstrapValidator").updateStatus("brandLogo", "VALID");
+      } else {
+        //否则都是校验失败的
+        $("#form").data("bootstrapValidator").updateStatus("brandLogo", "INVALID");
+      }
+
     }
   });
 
-// 校验成功事件，发送ajax请求，添加数据
-  
+  // 校验成功事件，触发表单校验成功事件，发送ajax请求，添加数据
+  $("#form").on("success.form.bv", function (e) {
+
+    var param = $("#form").serialize()
+    //console.log(param);
+    param += "& picName1=" + img[0].picName + " & picAddr1=" + img[0].picAddr;
+    param += "& picName2=" + img[1].picName + " & picAddr2=" + img[1].picAddr;
+    param += "& picName3=" + img[2].picName + " & picAddr3=" + img[2].picAddr;
+
+    $.ajax({
+      type: "post",
+      url: "/product/addProduct",
+      data: param,
+      success: function (info) {
+        //console.log(info);
+        if (info.success) {
+          $("#productModal").modal("hide");
+          //重新渲染
+          page = 1;
+          render();
+          //重置表单
+          //重置内容和样式
+          $("#form")[0].reset();
+          console.log($("#form"));
+          $("#form").data("bootstrapValidator").resetForm();
+
+          //重置请选择二级分类
+          $(".dropdown-text").text("请选择二级分类");
+          //数组为空，方便下次重0开始
+          img = [];
+          //id重置
+          $('[name="brandId"]').val("");
+          //删除原始图片
+          $(".img-box img").remove();
+
+        }
+      }
+     
+
+    })
+    console.log(img);
+  })
+
+
+
+
+
+
 
 })

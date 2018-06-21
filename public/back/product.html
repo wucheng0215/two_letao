@@ -212,10 +212,10 @@
         <td>{{v.size}}</td>
         <td>{{v.statu==0?"下架":"上架"}}</td>
         <td>
-          {{if v.statu==1}}
+          {{if v.statu==0}}
           <button class="btn btn-default btn-sm">上架</button>
           {{/if}}
-          {{if v.statu==0}}
+          {{if v.statu==1}}
           <button class="btn btn-danger btn-sm">下架</button>
           {{/if}}
         </td>
@@ -229,7 +229,7 @@
       {{each rows v i}}
       <li>
           <!-- 给a添加一个id，给a注册点击按钮，需要拿到对应的内容 -->
-            <a href="#" data-id={{v.id}}>{{v.categoryName}}</a>
+            <a href="#" data-id={{v.id}}>{{v.brandName}}</a>
           </li>
     {{/each}}
     
