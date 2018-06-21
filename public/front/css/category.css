@@ -1,0 +1,54 @@
+
+
+.lt_content .content-left{
+  width: 90px;
+  height: 100%;
+  float: left;
+  /* 区域滚动 */
+  position: relative
+
+}
+
+.lt_content .content-left li{
+  width:90px;
+  height: 50px;
+  border-bottom: 1px solid red;
+  border-right: 1px solid red;
+  background-color: pink;
+}
+
+.lt_content .content-left li a{
+  display: block;
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  line-height: 50px
+}
+
+.lt_content .content-left li.now{
+  background-color: #fff;
+  border: none;
+}
+
+.lt_content .content-right{
+  /* 自适应 */
+  overflow: hidden; 
+  /* 区域滚动 */
+ position: relative;
+ height: 100%;
+  
+}
+
+.lt_content .content-right li{
+  float: left;
+  width: 33.33%;
+  text-align: center;
+}
+.content-right li img{
+  width: 62px;
+  height: 62px;
+ margin: 0 auto
+}
+
+
+

@@ -82,7 +82,7 @@ background-color: #fff;
   float: left;
   width: 25%;
   text-align: center;
-  padding: 10px;
+  padding-top: 10px;
 }
 
 .lt_footer li a{
@@ -101,41 +101,3 @@ background-color: #fff;
   color: darkorange;
 }
 
-/* 导航部分 */
-.lt_content .lt_nav{
-  padding: 10px
-}
-
-.lt_content .lt_nav li{
-  float: left;
-  width: 33.33%;
-}
-
-/* 商品区域 */
-.lt_product{
-  padding: 10px
-}
-
-.lt_product li{
-   float: left;
-   width: 48%;
-   border: 1px solid #ccc;
-   margin-bottom: 15px;
-  text-align: center;
-  padding:10px;
-}
-
-.lt_product li:nth-child(odd){
-  margin-right: 20px
-}
-
-.lt_product li .now{
-  color: red;
-  font-size: 12px
-}
-
-.lt_product li .origin{
-  
-  font-size: 12px;
-  text-decoration: line-through;
-}
