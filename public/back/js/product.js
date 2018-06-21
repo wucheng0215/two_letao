@@ -215,7 +215,7 @@ $(function () {
     done: function (e, data) {
       console.log(data.result);
 
-      //如果图片超过三张，就直接不能上传了
+      //如果图片超过三张，就直接不能上传了，如果没有这个条件，可以上传四张甚至更多
       if (img.length >= 3) {
         return;
       }

@@ -188,7 +188,7 @@
   <script type="text/html" id="tpl">
     {{each rows v i}}
     <tr>
-      <td>{{i+1}}</td>
+      <td>{{(page-1)*size+i+1}}</td>
       <td>{{v.categoryName}}</td>
       <td>{{v.brandName}}</td>
       <td>
