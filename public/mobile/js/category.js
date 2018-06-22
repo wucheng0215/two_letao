@@ -45,8 +45,9 @@ $(function () {
     var id = $(this).data("id");
     renderSecond(id);
 
-    //让右边的区域滚动滚回 0，0
-    mui('.mui-scroll-wrapper').scroll()[1].scrollTo(0,0,500);//100毫秒滚动到顶2
+    //让右边的区域滚动滚回 0，0 
+
+    mui('.content-right .mui-scroll-wrapper').scroll().scrollTo(0,0,500);//100毫秒滚动到顶2
 
   });
 
