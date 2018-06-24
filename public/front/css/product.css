@@ -1,0 +1,58 @@
+
+
+/* 头部 */
+
+
+
+
+.lt_header h3{
+  color: #fff;
+  font-size: 18px;
+  font-weight: 400
+}
+
+/* 底部 */
+.footer{
+  width: 100%;
+  height: 55px;
+  position: absolute;
+  bottom:0;
+  background-color: #ccc;
+  padding: 10px;
+}
+
+/* 公共类 */
+.common{
+  padding: 10px;
+  border-top: 1px solid #ccc;
+}
+
+.lt_price .price{
+  color: red;
+  font-size: 16px;
+
+}
+
+.lt_price .oldPrice{
+  color: #666;
+  text-decoration: line-through;
+  font-size: 12px
+}
+
+.lt_size span{
+  color: #666;
+  font-size: 12px;
+  padding: 5px;
+  border: 1px solid #ccc;
+  background-color: #eee;
+}
+
+.lt_num .residue{
+ color: #666;
+ font-size: 12px;
+}
+
+
+.lt_size span.now{
+  background-color: #069;
+}

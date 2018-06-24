@@ -103,3 +103,62 @@ background-color: #fff;
   color: darkorange;
 }
 
+
+
+/* 搜素框样式 */
+
+/* 内容部分 */
+.lt_content{
+  position: relative;
+}
+.lt_search{
+  padding: 10px;
+  
+}
+
+ .lt_search input{
+  height: 34px;
+  border: 1px solid #007aff;
+  border-radius: 5px;
+  font-size: 14px;
+  margin: 0;
+}
+
+.lt_content .lt_search button{
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  border-radius: 0 5px 5px 0px；
+}
+
+
+/* 商品区域 */
+/* 商品区域 */
+.lt_product{
+  padding: 10px
+}
+
+.lt_product li{
+   float: left;
+   width: 48%;
+   border: 1px solid #ccc;
+   margin-bottom: 15px;
+  text-align: center;
+  padding:10px;
+}
+
+.lt_product li:nth-child(odd){
+  margin-right: 4%;
+}
+
+.lt_product li .now{
+  color: red;
+  font-size: 12px
+}
+
+.lt_product li .origin{
+  
+  font-size: 12px;
+  text-decoration: line-through;
+}
+

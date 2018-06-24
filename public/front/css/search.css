@@ -5,31 +5,7 @@
   font-weight: 400
 }
 
-/* 内容部分 */
-.lt_content{
-  position: relative;
-}
-.lt_search{
-  padding: 10px;
-  
-}
-
-
-
- .lt_search input{
-  height: 34px;
-  border: 1px solid #007aff;
-  border-radius: 5px;
-  font-size: 14px;
-  margin: 0;
-}
-
-.lt_content .lt_search button{
-  position: absolute;
-  top: 10px;
-  right: 10px;
-  border-radius: 0 5px 5px 0px；
-}
+/* 历史内容部分 */
 
 .lt_content .lt_history{
   padding: 10px;

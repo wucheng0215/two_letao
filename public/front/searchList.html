@@ -5,7 +5,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>乐淘搜索页</title>
+  <title>乐淘商品列表页</title>
   <link rel="icon" href="favicon.ico">
   <!-- mui框架 -->
   <link rel="stylesheet" href="lib/mui/css/mui.css">
@@ -13,7 +13,7 @@
   <link rel="stylesheet" href="lib/fa/css/font-awesome.css">
   <!-- 公共样式 -->
   <link rel="stylesheet" href="css/common.css">
-  <link rel="stylesheet" href="css/search.css">
+  <link rel="stylesheet" href="css/searchList.css">
 
 </head>
 
@@ -27,29 +27,64 @@
       <a href="javascript:history.go(-1);" class="mui-pull-left">
         <span class="mui-icon mui-icon-back"></span>
       </a>
-      <h3>搜素中心</h3>
+      <h3>商品列表</h3>
     </div>
 
     <!-- 内容 -->
     <div class="lt_content">
       <div class="mui-scroll-wrapper">
         <div class="mui-scroll">
-          <!-- 第一部分 -->
+
+          <!-- 第一部分 搜索-->
           <div class="lt_search">
             <input type="text" placeholder="请输入关键字">
             <button class="mui-btn mui-badge-blue search_btn">搜索</button>
           </div>
 
 
-          <!-- 第二部分 -->
-          <div class="lt_history">
+          <!-- 第二部分 排序-->
+          <div class="lt_sort">
+            <ul class="mui-clearfix">
+              <li>
+                <a href="javascript:;">上架时间
+                  <i class="fa fa-angle-down"></i>
+                </a>
+              </li>
+              <li data-type="price">
+                <a href="javascript:;">价格
+                  <i class="fa fa-angle-down"></i>
+                </a>
+              </li>
+              <li data-type="num">
+                <a href="javascript:;">库存
+                  <i class="fa fa-angle-down"></i>
+                </a>
+              </li>
+              <li>
+                <a href="javascript:;">折扣
+                  <i class="fa fa-angle-down"></i>
+                </a>
+              </li>
+            </ul>
 
-            <!-- 挖个大坑 -->
 
           </div>
+
+          <!-- 商品区域-->
+          <div class="lt_product">
+
+            <ul clear="mui-clearfix">
+              <!-- 一定要放在ul的里面，加载的时候才能加载出来 -->
+              <!-- <div class="loading"></div>  -->
+              <!-- 挖个坑 -->
+            </ul>
+
+          </div>
+
         </div>
       </div>
     </div>
+
 
 
 
@@ -85,33 +120,36 @@
 
   </div>
 
+  <!-- 准备模板 -->
   <script type="text/html" id="tpl">
-    {{if rows.length === 0}}
-       <p>没有历史记录</p>
-    {{/if}}
+<!-- 如果data的长度为0，那么就没有更多的商品了 -->
 
-    {{if rows.length > 0}}
-    <div class=" title mui-clearfix">
-        <span class="mui-pull-left ">搜索历史</span>
-        <span class="mui-pull-right clear">
-          <i class="mui-icon mui-icon-trash"></i>
-          清空历史记录
-        </span>
-      </div>
-      
-      <div class="lt_record">
-        <ul>
-            {{each rows v i}}
-          <li data-index={{i}}>
-            <a href="searchList.html?key={{v}}" class="mui-pull-left">{{v}}</a>
-            <span class="mui-icon mui-icon-closeempty mui-pull-right btn_delete"></span>
-          </li>
-          {{/each}}
-        </ul>
-      </div>
-    </div>
+  {{if data.lenght == 0}}
+  <p>没有更多的商品了</p>
+  {{/if}}
+
+{{if data.length > 0}}
+  {{each data v i}}
+  <li>
+      <a href="product.html?productId={{v.id}}">
+        <img src="{{v.pic[0].picAddr}}" alt="">
+        <!-- 两行溢出。。。  bootstrap里面text-cut -->
+        <p class="mui-ellipsis-2">{{v.proDesc}}</p>
+        <p>
+          <span class="now">&yen;{{v.oldPrice}}</span>
+          <span class="origin">&yen;{{v.price}}</span>
+        </p>
+        <button class="mui-btn mui-btn-blue">立即购买</button>
+      </a>
+    </li>
+    {{/each}}
+
 {{/if}}
-  </script>
+
+
+</script>
+
+
 
 
 
@@ -122,8 +160,8 @@
   <script src="lib/artTemplate/template-web.js"></script>
 
   <script src="js/commn.js"></script>
-  <script src="js/search.js"></script>
 
+  <script src="js/searchList.js"></script>
 
 
 </body>
